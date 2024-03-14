@@ -1,0 +1,44 @@
+1 | 0.528535 
+2 | 0.452200 
+4 | 0.442583 
+8 | 0.442569 
+16 | 0.443099 
+32 | 0.536995 
+64 | 0.553015 
+128 | 0.799220 
+256 | 0.830353 
+512 | 0.984308 
+1024 | 1.063762 
+2048 | 1.456486 
+4096 | 2.128230 
+8192 | 3.142695 
+JobId=32536566 JobName=HW3-BLOCKING-SAME
+   UserId=kamalida(6064145) GroupId=CMSE822_SS24_S001(2887) MCS_label=N/A
+   Priority=59262 Nice=0 Account=general QOS=kamalida
+   JobState=RUNNING Reason=None Dependency=(null)
+   Requeue=1 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0
+   RunTime=00:00:20 TimeLimit=00:01:00 TimeMin=N/A
+   SubmitTime=2024-03-13T22:18:56 EligibleTime=2024-03-13T22:18:56
+   AccrueTime=2024-03-13T22:18:56
+   StartTime=2024-03-13T22:19:07 EndTime=2024-03-13T22:20:07 Deadline=N/A
+   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2024-03-13T22:19:07 Scheduler=Main
+   Partition=general-short AllocNode:Sid=dev-amd20:29977
+   ReqNodeList=(null) ExcNodeList=(null)
+   NodeList=amr-089
+   BatchHost=amr-089
+   NumNodes=1 NumCPUs=128 NumTasks=2 CPUs/Task=1 ReqB:S:C:T=0:0:*:*
+   ReqTRES=cpu=2,mem=2G,node=1,billing=311
+   AllocTRES=cpu=128,mem=2G,node=1,billing=311
+   Socks/Node=* NtasksPerN:B:S:C=2:0:*:* CoreSpec=*
+   MinCPUsNode=2 MinMemoryNode=2G MinTmpDiskNode=0
+   Features=[intel14|intel16|intel18|(amr|acm)|nvf|nal|nif]&amd20 DelayBoot=00:00:00
+   OverSubscribe=NO Contiguous=0 Licenses=(null) Network=(null)
+   Command=/mnt/ufs18/home-261/kamalida/cmse822/project-3-mpi-p2p-team-10/part1-same.sb
+   WorkDir=/mnt/ufs18/home-261/kamalida/cmse822/project-3-mpi-p2p-team-10
+   Comment=stdout=/mnt/ufs18/home-261/kamalida/cmse822/project-3-mpi-p2p-team-10/slurm-32536566.out 
+   StdErr=/mnt/ufs18/home-261/kamalida/cmse822/project-3-mpi-p2p-team-10/slurm-32536566.out
+   StdIn=/dev/null
+   StdOut=/mnt/ufs18/home-261/kamalida/cmse822/project-3-mpi-p2p-team-10/slurm-32536566.out
+   Power=
+   
+
