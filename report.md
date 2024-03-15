@@ -34,7 +34,11 @@ The plots below visualize the time taken for the ping-pong exchange as a functio
 ### Code implementation
 The code for the blocking ring shift is available in the BlockingRingShiftFolder.  The main file ran was the `blockingRingShift.cpp` file.
 
-To run the script, simply compile blockignRingShift with mpicxx and use mpiexec to run.
+To run the script, first compile blockingRingShift with mpicxx.  Afterwards use 
+
+mpiexec -n [TASK_COUNT] a.out [MESSAGE_SIZE] [NUMBER_OF_RING_SHIFTS] 
+
+to run the program
 
 ### Results
 For each of the following runs, the message sizes are from 2 bytes to 4kb raising in powers of 2.  Each run is also run 1000 times and the time is averaged out to overccome statistical noise.
