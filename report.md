@@ -32,16 +32,16 @@ The plots below visualize the time taken for the ping-pong exchange as a functio
  s
 ## Part 3: MPI Ring Shift
 ### Code implementation
-The code for the blocking ring shift is available in the BlockingRingShiftFolder.  The main file ran was the `blockingRingShift.cpp` file.
+The code for the blocking ring shift is available in the BlockingRingShift folder.  The main file ran was the `blockingRingShift.cpp` file.
 
 To run the script, first compile blockingRingShift with mpicxx.  Afterwards use 
 
 mpiexec -n [TASK_COUNT] a.out [MESSAGE_SIZE] [NUMBER_OF_RING_SHIFTS] 
 
-to run the program
+to run the program.
 
 ### Results
-For each of the following runs, the message sizes are from 2 bytes to 4kb raising in powers of 2.  Each run is also run 1000 times and the time is averaged out to overccome statistical noise.
+For each of the following runs, the message sizes are from 2 bytes to 4 kb raising in powers of 2.  Each run is also ran 1000 times and the elapsed time is averaged out to overccome statistical noise.
 
 The graph below displays the performance of keeping the nodes at 4 and varying the number of tasks per node from 1 to 128.  Log scaling in the x and y axis.
 
@@ -58,7 +58,7 @@ In this run the amount of nodes are varied and the tasks per node is 1. With the
 ### Analysis
 The latency of the program can be seen by the y intercept of the graph.  This is also the smallest message size, as we are just testing the communication speed.  The bandwidth in these graphs can be seen how steep the slope is of the lines, seeing how much the message size affects the communication times. 
 
-For the 1st graph where the data is shifted by 1000 positions and the tasks per node is varied.  We see that as the number of tasks per node goes up, the lower the latency.  This is probably due to more tasks being on the same node so that communications are faster.  For the bandwidth we see that as the message size increases, it stays relatively flat until around the 512 bytes where we see a dramatic rise in slope.  This suggests that the bandwidth started to become a limiting factor around then, while it was only latency bound before.
+For the 1st graph where the data is shifted by 1000 positions and the tasks per node is varied.  We see that as the number of tasks per node goes up, the lower the latency.  This is probably due to more tasks being on the same node so that communications are faster.  For the bandwidth we see that as the message size increases, it stays relatively flat until around the 512 bytes where we see a dramatic rise in slope. This suggests that the bandwidth started to become a limiting factor around then, while it was only latency bound before.  There also appears to be a lot of noise and variance present in the graph, like the 16 tasks per node that jumps all over the place in terms of time taken.  But in general, we see an increase in time taken at near the end of the graph, and a flat line before then. 
 
 
 For the 2nd graph where the data is shifted by 1 position, we can see that as the number of nodes goes up the latency also increases.  This is probably due to the fact that the nodes start to become more distant, causing more communication overhead and thus increasing the latency in communication.  
