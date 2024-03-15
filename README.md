@@ -1,3 +1,4 @@
+[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-718a45dd9cf7e7f842a935f5ebbe5719a5e09af4491e668f4dbf3b35d5cca122.svg)](https://classroom.github.com/online_ide?assignment_repo_id=13989359&assignment_repo_type=AssignmentRepo)
 # Project 3: MPI Ping-Pong and Ring Shift
 
 ## Background
@@ -30,7 +31,7 @@ Repeat Part 1 using non-blocking MPI communication, i.e., using `MPI_Isend()` an
 
 ## Part 4: Non-blocking MPI Ring Shift
 
-Repeat Part 3 but using non-blocking communication via `MPI_Isendrecv()`. Compare the results to the blocking case.
+Repeat Part 3 but using non-blocking communication via `MPI_Isend()` and `MPI_Irecv()`. Compare the results to the blocking case.
 
 ## What to turn-in
 

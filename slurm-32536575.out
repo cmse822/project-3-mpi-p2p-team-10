@@ -1,0 +1,44 @@
+1 | 1.405282 
+2 | 1.293506 
+4 | 1.296592 
+8 | 1.289333 
+16 | 1.299848 
+32 | 1.371849 
+64 | 1.474026 
+128 | 1.522127 
+256 | 1.830165 
+512 | 2.526362 
+1024 | 2.026654 
+2048 | 2.678274 
+4096 | 3.306119 
+8192 | 3.999939 
+JobId=32536575 JobName=HW3-BLOCKING-DIFFER
+   UserId=kamalida(6064145) GroupId=CMSE822_SS24_S001(2887) MCS_label=N/A
+   Priority=59303 Nice=0 Account=general QOS=kamalida
+   JobState=RUNNING Reason=None Dependency=(null)
+   Requeue=1 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0
+   RunTime=00:00:20 TimeLimit=00:01:00 TimeMin=N/A
+   SubmitTime=2024-03-13T22:18:56 EligibleTime=2024-03-13T22:18:56
+   AccrueTime=2024-03-13T22:18:56
+   StartTime=2024-03-13T22:19:07 EndTime=2024-03-13T22:20:07 Deadline=N/A
+   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2024-03-13T22:19:07 Scheduler=Main
+   Partition=general-short AllocNode:Sid=dev-amd20:29977
+   ReqNodeList=(null) ExcNodeList=(null)
+   NodeList=amr-[010-011]
+   BatchHost=amr-010
+   NumNodes=2 NumCPUs=256 NumTasks=2 CPUs/Task=1 ReqB:S:C:T=0:0:*:*
+   ReqTRES=cpu=2,mem=4G,node=2,billing=622
+   AllocTRES=cpu=256,mem=4G,node=2,billing=622
+   Socks/Node=* NtasksPerN:B:S:C=1:0:*:* CoreSpec=*
+   MinCPUsNode=1 MinMemoryNode=2G MinTmpDiskNode=0
+   Features=[intel14|intel16|intel18|(amr|acm)|nvf|nal|nif]&amd20 DelayBoot=00:00:00
+   OverSubscribe=NO Contiguous=0 Licenses=(null) Network=(null)
+   Command=/mnt/ufs18/home-261/kamalida/cmse822/project-3-mpi-p2p-team-10/part1-differ.sb
+   WorkDir=/mnt/ufs18/home-261/kamalida/cmse822/project-3-mpi-p2p-team-10
+   Comment=stdout=/mnt/ufs18/home-261/kamalida/cmse822/project-3-mpi-p2p-team-10/slurm-32536575.out 
+   StdErr=/mnt/ufs18/home-261/kamalida/cmse822/project-3-mpi-p2p-team-10/slurm-32536575.out
+   StdIn=/dev/null
+   StdOut=/mnt/ufs18/home-261/kamalida/cmse822/project-3-mpi-p2p-team-10/slurm-32536575.out
+   Power=
+   
+

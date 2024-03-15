@@ -1,0 +1,15 @@
+#!/bin/bash --login
+
+#SBATCH --time=00:10:00
+#SBATCH --nodes=4
+#SBATCH --ntasks-per-node=8
+#SBATCH --cpus-per-task=2
+#SBATCH --job-name blocking_ring_shift
+
+for i in {1..12}
+do
+   num=$((2**i))
+#    echo "Processing with number: $num"
+   # Increasing msg size, and 1000 ring shifts
+   srun a.out $num 1000 
+done
