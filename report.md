@@ -29,3 +29,23 @@ The plots below visualize the time taken for the ping-pong exchange as a functio
  1. The non-blocking communication offers advantages in specific contexts, especially when managing large messages or when computation can be overlapped with message passing. However, the fundamental limitations of network latency and bandwidth are the primary determinants of performance.
  2. The difference between same-node and different-node communication underlines the importance of network characteristics in distributed computing environments.
  3. Our observations of bandwith trends show that bandwidth increases with message size. and while blocking and non-blocking modes show similar trends the communication within the same node achieves higher bandwidth.
+
+## Part 4
+
+You can find the code used for nonblocking ring shift in nonBlockingRingShift.cpp, and the code for plotting in plot_data.py.
+
+To test the performance, the code was tested on the HPCC with 4 nodes, each utilizing up to 16 tasks. The time and bandwidth vs message size graphs are here:
+
+![Time Vs Message Size](Q4_plot.png)
+
+![Bandwidth Vs Message Size](Q4_plot_bandwidth.png)
+
+### Analysis
+
+As can be seen in the first figure, every curve has an upward trend as it takes longer to send larger messages; however, you will notice two distinct starting points yet a similar ending point. This is likely due to the lower (faster) curves being on the same node, hence they have lower latency (around 0.000001 seconds) and communicate faster on small message sizes compared to when there are more tasks which utilize multiple nodes, which then have to utilize the HPCC network (latency around 0.00001 seconds). Eventually they trend toward the same region/slope, indicating that the tasks become bound by the bandwidth moreso than latency.
+
+This observation continues in the second figure, where the tasks with lower latency start with better bandwidth compared to the tasks with higher latency. As the message size increases, the bandwidths converge as they approach 1 GB/second, which is likely the maximum bandwidth available on the HPCC network.
+
+Note that for both graphs, there are a couple of extreme outliers, which is unusual given that we tested the each RTT 10,000 times. After a couple tests, it appears there are always a few on the higher latency curves (not always the same). While we aren't sure of the exact cause, we hypothesize it has to do with the nodes the HPCC/MPI selected for that test.
+
+Compared to blocking ring shift, nonblocking was faster, had lower latency/higher bandwidth, and better clustered curves. This is as expected, as the blocking protocol likely has more overhead due to its blocking nature, causing it to be slower than nonblocking. While some of the difference may be attributed to the HPCC nodes used, the results do follow what we expected. Overall, nonblocking appeared to have better performance (especially on smaller message sizes), but it comes at the cost of implementation complexity.
