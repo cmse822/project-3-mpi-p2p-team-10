@@ -59,11 +59,11 @@ For the 1st graph where the data is shifted by 1000 positions and the tasks per 
 
 For the 2nd graph where the data is shifted by 1 position, we can see that as the number of nodes goes up the latency also increases.  This is probably due to the fact that the nodes start to become more distant, causing more communication overhead and thus increasing the latency in communication.  
 
-The bandwidth of these test.  We can see that for the varying test, the slope is relatively flat and only goes up a little bit at the end for most node counts.  From this we can conclude that the blocking version of the ring shift is mostly bounded by the latency.
+We can see that for the varying node counts, the slope is relatively flat and only goes up a little bit at the end for most node counts.  From this we can conclude that the blocking version of the ring shift is mostly bounded by the latency.
 
-For the 3rd graph where the data is shifted by 1000 position, we can that the behavior is the same as the 1 ring shift where more nodes means higher latency.  This confirms that the increase in nodes increases the latency as more nodes have to finish the work.  
+For the 3rd graph where the data is shifted by 1000 position, we can that the behavior is the similar to the 1 position ring shift where more nodes means higher latency.  This confirms that the increase in nodes increases the latency as more nodes have to finish the work.  
 
-In terms of the bandwidth we see that the all of the lines are relatively flat until the message starts to become very large at 1024, 2048, and 4096 bytes, where the line rises sharply. We also observe a dip in latency and bandwidth at message 1024 for the higher node counts.  This is probably because the message is able to be perfectly passed in its cache line at msg size 1024.  We observe that the bandwidth for the HPCC only really takes effect at 1024 bytes.  
+In terms of the bandwidth we see that the all of the lines are relatively flat until the message starts to become very large at 1024, 2048, and 4096 bytes, where the line rises sharply. We also observe a dip in latency and bandwidth at message 1024 for the higher node counts.  This is probably because the message is able to be perfectly passed in its cache line at msg size 1024.  We observe that the bandwidth for the HPCC only really becomes a limiting factor at 1024 bytes.  
 
 ## Part 4
 
