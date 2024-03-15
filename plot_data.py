@@ -4,7 +4,7 @@ import math
 data = {}
 c=['b','g','r','c','m','y']
 for i in range(6):
-    data[2**(i+1)] = [([],[]) for _ in range(i+1)]
+    data[2**(i+1)] = [([],[],[]) for _ in range(i+1)]
 
 with open("./results.txt", 'r') as file:
     for line in file:
@@ -15,8 +15,10 @@ with open("./results.txt", 'r') as file:
         messageSize = int(parts[1])
         shifts = int(parts[2])
         time = float(parts[3])
+        bandwidth = (2 * float(messageSize)) / time
         data[tasks][int(math.log2(shifts))][0].append(messageSize*2)
         data[tasks][int(math.log2(shifts))][1].append(time)
+        data[tasks][int(math.log2(shifts))][2].append(bandwidth)
 
 plt.figure(figsize=(10, 6))
 plt.yscale("log")
@@ -31,3 +33,17 @@ for tasks in data:
     i += 1
 plt.legend()
 plt.savefig("./Q4_plot.png")
+
+plt.figure(figsize=(10, 6))
+plt.yscale("log")
+plt.xscale("log")
+plt.title(f"Bandwidth vs Message Size")
+plt.xlabel('Message Size (bytes)')
+plt.ylabel('Bandwidth (bytes/second)')
+plt.grid(True)
+i = 0
+for tasks in data:
+    plt.plot(data[tasks][0][0], data[tasks][0][2], marker='o', color=c[i], linestyle='-', label=f"{tasks} tasks")
+    i += 1
+plt.legend()
+plt.savefig("./Q4_plot_bandwidth.png")
