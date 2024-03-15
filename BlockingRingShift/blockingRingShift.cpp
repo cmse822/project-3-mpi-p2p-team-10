@@ -31,6 +31,7 @@ int main(int argc, char* argv[]) {
   if(argc == 3) {
     message_size = std::atoi(argv[1]);
     shifts = std::stoi(argv[2]);
+    std::cout << shifts << std::endl;
   }
   
   // Generate a message of certain size.
@@ -51,9 +52,9 @@ int main(int argc, char* argv[]) {
     // MPI_Sendrecv(message.data(), message.size(), MPI_CHAR, next_rank, 0, 
     //              message.data(), message.size(), MPI_CHAR, prev_rank, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
     for (int s = 0; s < shifts; s++) {
-    MPI_Sendrecv(&message, message_size, MPI_CHAR, next_rank, 0,
-                 &message, message_size, MPI_CHAR, prev_rank, 0,
-                 MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+      MPI_Sendrecv(&message, message_size, MPI_CHAR, next_rank, 0,
+                  &message, message_size, MPI_CHAR, prev_rank, 0,
+                  MPI_COMM_WORLD, MPI_STATUS_IGNORE);
     }
     // std::cout << "Rank " << rank << " received msg size: " << sizeof(message) << std::endl;
 

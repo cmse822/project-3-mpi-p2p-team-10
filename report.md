@@ -29,6 +29,7 @@ The plots below visualize the time taken for the ping-pong exchange as a functio
  1. The non-blocking communication offers advantages in specific contexts, especially when managing large messages or when computation can be overlapped with message passing. However, the fundamental limitations of network latency and bandwidth are the primary determinants of performance.
  2. The difference between same-node and different-node communication underlines the importance of network characteristics in distributed computing environments.
  3. Our observations of bandwith trends show that bandwidth increases with message size. and while blocking and non-blocking modes show similar trends the communication within the same node achieves higher bandwidth.
+ s
 ## Part 3: MPI Ring Shift
 ### Code implementation
 The code for the blocking ring shift is available in the BlockingRingShiftFolder.  The main file ran was the `blockingRingShift.cpp` file.
@@ -38,22 +39,29 @@ To run the script, simply compile blockignRingShift with mpicxx and use mpiexec 
 ### Results
 For each of the following runs, the message sizes are from 2 bytes to 4kb raising in powers of 2.  Each run is also run 1000 times and the time is averaged out to overccome statistical noise.
 
-For this run, the elements are shifted around the ring by 1 position.  A graph with log scaling in the x and y axis is as shown below:  
+The graph below displays the performance of keeping the nodes at 4 and varying the number of tasks per node from 1 to 128.  Log scaling in the x and y axis.
+
+![VariedTasksBlockingRingShift](assets/part_3/varied_tasks_1000_blockingringshifts_plot.png)
+
+For this run the amount of nodes are varied and the tasks per node is 1. The elements are shifted around the ring by 1 position.  A graph with log scaling in the x and y axis is as shown below:  
 
 ![BlockingRingShift](assets/part_3/blockingringshift_plot.png)
 
-In this run, the elements are shifted around the ring by 1000 positions.  Each run is also ran for 1000 times and averaged out to overcome statistical noise.  A graph with log scaling in the x and y axis are shown below:
+In this run the amount of nodes are varied and the tasks per node is 1. With the elements are shifted around the ring by 1000 positions.  Each run is also ran for 1000 times and averaged out to overcome statistical noise.  A graph with log scaling in the x and y axis are shown below:
 
 ![1000BlockingRingShift](assets/part_3/1000blockingringshifts_plot.png)
 
 ### Analysis
 The latency of the program can be seen by the y intercept of the graph.  This is also the smallest message size, as we are just testing the communication speed.  The bandwidth in these graphs can be seen how steep the slope is of the lines, seeing how much the message size affects the communication times. 
 
-For the 1st graph where the data is shifted by 1 position, we can see that as the number of nodes goes up the latency also increases.  This is probably due to the fact that the nodes start to become more distant, causing more communication overhead and thus increasing the latency in communication.  
+For the 1st graph where the data is shifted by 1000 positions and the tasks per node is varied.  We see that as the number of tasks per node goes up, the lower the latency.  This is probably due to more tasks being on the same node so that communications are faster.  For the bandwidth we see that as the message size increases, it stays relatively flat until around the 512 bytes where we see a dramatic rise in slope.  This suggests that the bandwidth started to become a limiting factor around then, while it was only latency bound before.
+
+
+For the 2nd graph where the data is shifted by 1 position, we can see that as the number of nodes goes up the latency also increases.  This is probably due to the fact that the nodes start to become more distant, causing more communication overhead and thus increasing the latency in communication.  
 
 The bandwidth of these test.  We can see that for the varying test, the slope is relatively flat and only goes up a little bit at the end for most node counts.  From this we can conclude that the blocking version of the ring shift is mostly bounded by the latency.
 
-For the 2nd graph where the data is shifted by 1000 position, we can that the behavior is the same as the 1 ring shift where more nodes means higher latency.  This confirms that the increase in nodes increases the latency as more nodes have to finish the work.  
+For the 3rd graph where the data is shifted by 1000 position, we can that the behavior is the same as the 1 ring shift where more nodes means higher latency.  This confirms that the increase in nodes increases the latency as more nodes have to finish the work.  
 
 In terms of the bandwidth we see that the all of the lines are relatively flat until the message starts to become very large at 1024, 2048, and 4096 bytes, where the line rises sharply. We also observe a dip in latency and bandwidth at message 1024 for the higher node counts.  This is probably because the message is able to be perfectly passed in its cache line at msg size 1024.  We observe that the bandwidth for the HPCC only really takes effect at 1024 bytes.  
 
